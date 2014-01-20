@@ -1,5 +1,6 @@
 require 'faraday'
 require 'excon'
+require 'json'
 
 module LucidClient
 
