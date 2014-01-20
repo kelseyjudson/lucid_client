@@ -60,13 +60,13 @@ module LucidClient
 
     def _default_connection
       if uri && _headers.any?
-        Faraday.new( uri, :headers => _headers ) do |f|
+        ::Faraday.new( uri, :headers => _headers ) do |f|
           _middleware.each { |m| f.use m }
 
           f.adapter :excon
         end
       else
-        Faraday
+        ::Faraday
       end
     end
 
