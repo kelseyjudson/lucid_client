@@ -1,8 +1,8 @@
-module LucidClient
+module LucidClient; end
 
-  # ...
+require 'lucid_client/mixins/env'
 
-end
+LucidClient.extend( LucidClient::Env )
 
 require 'lucid_client/logger'
 require 'lucid_client/logging_policy'

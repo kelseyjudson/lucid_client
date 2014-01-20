@@ -3,7 +3,7 @@ require 'excon'
 
 module LucidClient
 
-  # This is an abstract class and should not be initialized directly. Methods
+  # This is an abstract class and should not be instantiated directly. Methods
   # named with a leading underscore are intended (but not required) to be
   # reimplemented by the subclass.
   #
