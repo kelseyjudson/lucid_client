@@ -14,3 +14,5 @@ require 'lucid_client/resource'
 require 'lucid_client/mixins/asynchronous'
 require 'lucid_client/mixins/logging'
 require 'lucid_client/mixins/model'
+
+require 'lucid_client/middleware/call_logger'
