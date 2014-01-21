@@ -6,6 +6,12 @@ module LucidClient::API
 
   private
 
+  %i{ get post patch put delete }.each do |method|
+    define_method( method ) do |*args|
+      session.send( method, *args )
+    end
+  end
+
   def session
     if @session
       @session
