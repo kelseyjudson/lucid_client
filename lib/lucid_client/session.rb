@@ -94,7 +94,7 @@ module LucidClient
     # This parses and then strips the key leaving only the resource hash.
     #
     def parse_resource( response )
-      parse_response( response.body ).first.last
+      parse_response( response ).first.last
     end
 
   end

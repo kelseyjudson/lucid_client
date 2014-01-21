@@ -50,7 +50,7 @@ module LucidClient
     def find_or_initialize( model, mappings )
       index = mappings.select { |k, v| v == 'id' }.keys.first
 
-      if _active_record( model ) && index
+      if _active_record?( model ) && index
         model.where( index => hash['id'] ).first_or_initialize
       else
         model.new
