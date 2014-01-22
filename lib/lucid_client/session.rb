@@ -57,6 +57,19 @@ module LucidClient
       post( path, options.to_json )
     end
 
+    ### Response Parsing
+
+    def parse_response( response )
+      JSON.parse( response.body )
+    end
+
+    # API resources generally take the form +resource_type => resource_hash+.
+    # This parses and then strips the key leaving only the resource hash.
+    #
+    def parse_resource( response )
+      parse_response( response ).first.last
+    end
+
     private
 
     def _default_connection
@@ -84,17 +97,6 @@ module LucidClient
 
     def _request_path( path )
       path
-    end
-
-    def parse_response( response )
-      JSON.parse( response.body )
-    end
-
-    # API resources generally take the form +resource_type => resource_hash+.
-    # This parses and then strips the key leaving only the resource hash.
-    #
-    def parse_resource( response )
-      parse_response( response ).first.last
     end
 
   end
