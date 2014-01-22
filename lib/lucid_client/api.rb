@@ -12,6 +12,25 @@ module LucidClient::API
     end
   end
 
+  def represent( model, resource )
+    LucidClient::Resource.new( resource ).as( model )
+  end
+
+  def represent_each( model, resources )
+    LucidClient::Resource.map( model, resources )
+  end
+
+  # In most casts, override with +super.merge( ... )+.
+  #
+  def _default_params
+    { :fields => _fields }
+  end
+
+  # A +nil+ for +fields+ returns all fields.
+  #
+  def _fields
+  end
+
   def session
     if @session
       @session
