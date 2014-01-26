@@ -5,8 +5,10 @@ module LucidClient::Testing
 
       attr_reader :stubs
 
-      def connection
-        Faraday.new do |f|
+      # Build a new connection based on the assigned stubs.
+      #
+      def build
+        ::Faraday.new do |f|
           f.adapter( :test ) { |api| assign_stubs( api ) }
         end
       end
