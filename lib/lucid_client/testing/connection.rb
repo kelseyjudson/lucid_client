@@ -13,6 +13,9 @@ module LucidClient::Testing
         end
       end
 
+      # This might be used to assign stubs to connection adapters outside of
+      # this class.
+      #
       def assign_stubs( api )
         @stubs.each do |s|
           method, status, path, response_body = s
