@@ -77,7 +77,7 @@ module LucidClient
         ::Faraday.new( uri, :headers => _headers ) do |f|
           _middleware.each { |m| f.use m }
 
-          _test_adapter( f ) || f.adapter( :excon )
+          f.adapter :excon
         end
       else
         ::Faraday
@@ -93,17 +93,6 @@ module LucidClient
 
     def _middleware
       Array.new
-    end
-
-    # Will use Faraday test adapter if set here (in subclass). This way you
-    # can subclass a session which makes use of the other overrides such as
-    # +#_middleware+ and configure it for testing, eg.
-    #
-    #     connection.adapter( :test ) do |api|
-    #       LucidClient::Testing::Connection.assign_stubs( api )
-    #     end
-    #
-    def _test_adapter( connection )
     end
 
     def _request_path( path )
