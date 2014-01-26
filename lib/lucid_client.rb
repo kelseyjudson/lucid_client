@@ -11,8 +11,16 @@ require 'lucid_client/session'
 require 'lucid_client/api'
 require 'lucid_client/resource'
 
+### Mixins
+
 require 'lucid_client/mixins/asynchronous'
 require 'lucid_client/mixins/logging'
 require 'lucid_client/mixins/model'
 
+### Middleware
+
 require 'lucid_client/middleware/call_logger'
+
+### Testing
+
+require 'lucid_client/testing/connection'
