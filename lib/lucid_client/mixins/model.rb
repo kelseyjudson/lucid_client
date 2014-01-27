@@ -12,12 +12,12 @@ module LucidClient::Model
     # Accessor methods for each local attribute will be created, so call this
     # before defining any accessor overrides.
     #
-    def map_resources( &block )
+    def map_resources( options = {}, &block )
       unless ( mappings = block.call ).kind_of?( Hash )
         raise 'Block in #map_resources must return a Hash'
       end
 
-      attr_unless_exists mappings.keys
+      attr_unless_exists mappings.keys unless options[:accessors] == false
 
       define_singleton_method( :resource_mappings ) do
         mappings
