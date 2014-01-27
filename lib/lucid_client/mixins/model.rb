@@ -17,7 +17,7 @@ module LucidClient::Model
         raise 'Block in #map_resources must return a Hash'
       end
 
-      attr_accessor *mappings.keys
+      attr_unless_exists mappings.keys
 
       define_singleton_method( :resource_mappings ) do
         mappings
@@ -32,6 +32,29 @@ module LucidClient::Model
 
     def fields
       resource_mappings.values.join( ',' )
+    end
+
+    private
+
+    def attr_unless_exists( keys )
+      new_keys = no_matching_methods( keys )
+      new_keys = no_matching_columns( new_keys ) if defined?( ::ActiveRecord )
+
+      attr_accessor *new_keys
+    end
+
+    def no_matching_columns( keys )
+      if ancestors.include?( ::ActiveRecord::Base )
+        keys.select { |key| !( column_names.include? key.to_s ) }
+      else
+        keys
+      end
+    end
+
+    def no_matching_methods( keys )
+      keys.select do |key|
+        !( instance_methods.include? "#{key}=" )
+      end
     end
 
   end
