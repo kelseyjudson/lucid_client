@@ -1,6 +1,7 @@
 module LucidClient; end
 
 require 'lucid_client/mixins/env'
+require 'lucid_client/mixins/rails_check'
 
 LucidClient.extend( LucidClient::Env )
 

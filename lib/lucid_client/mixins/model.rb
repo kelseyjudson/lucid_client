@@ -6,6 +6,8 @@ module LucidClient::Model
 
   module ClassMethods
 
+    include LucidClient::RailsCheck
+
     # Maps local attributes to properties of a remote resource. The block
     # passed to this method is expected to return a hash of mappings.
     #
@@ -38,13 +40,13 @@ module LucidClient::Model
 
     def attr_unless_exists( keys )
       new_keys = no_matching_methods( keys )
-      new_keys = no_matching_columns( new_keys ) if defined?( ::ActiveRecord )
+      new_keys = no_matching_columns( new_keys )
 
       attr_accessor *new_keys
     end
 
     def no_matching_columns( keys )
-      if ancestors.include?( ::ActiveRecord::Base )
+      if active_record?( self )
         keys.select { |key| !( column_names.include? key.to_s ) }
       else
         keys
