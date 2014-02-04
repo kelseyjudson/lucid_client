@@ -31,8 +31,25 @@ module LucidClient
     # value.
     #
     def async_each( collection, &block )
-      threads = collection.map { |element| async { block.call element } }
+      threads = collection.each_with_index.map do|*args|
+        async { block.call( *args ) }
+      end
+
       wait_for( threads )
+    end
+
+    def async_map( collection, &block )
+      sem, results = Mutex.new, Array.new
+
+      async_each( collection ) do |element, i|
+        result = block.call( element, i )
+
+        sem.synchronize do
+          results[i] = result
+        end
+      end
+
+      results
     end
 
     def wait_for( threads )
