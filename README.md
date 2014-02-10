@@ -46,9 +46,9 @@ and trivializes mapping resources to local models/objects with
 
     # => (value of ENV['MY_APP_API_KEY'])
 
-`LucidClient::Asynchronous` provides convenient methods for asynchronous
-requests, but is especially useful when dealing with ActiveRecord persistence
-(where incorrect use of threading can block the connection pool).
+`LucidAsync::Mixin` provides convenient methods for asynchronous requests, but
+is especially useful when dealing with ActiveRecord persistence (where
+incorrect use of threading can block the connection pool).
 
     session.post_async( *args )
 

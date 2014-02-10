@@ -22,7 +22,8 @@ Gem::Specification.new do |s|
   s.has_rdoc               = false
 
   s.required_ruby_version  = '>= 2.0.0'
-  s.add_runtime_dependency   'faraday', '~> 0.8'
-  s.add_runtime_dependency   'excon',   '~> 0.31'
+  s.add_runtime_dependency   'faraday',     '~> 0.8'
+  s.add_runtime_dependency   'excon',       '~> 0.31'
+  s.add_runtime_dependency   'lucid_async', '~> 0.0'
 
 end
