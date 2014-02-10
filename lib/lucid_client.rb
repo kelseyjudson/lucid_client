@@ -1,3 +1,5 @@
+require 'lucid_async'
+
 module LucidClient; end
 
 require 'lucid_client/mixins/env'
@@ -14,7 +16,6 @@ require 'lucid_client/resource'
 
 ### Mixins
 
-require 'lucid_client/mixins/asynchronous'
 require 'lucid_client/mixins/logging'
 require 'lucid_client/mixins/model'
 
