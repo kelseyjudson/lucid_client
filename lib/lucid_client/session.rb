@@ -80,7 +80,7 @@ module LucidClient
           f.adapter :excon
         end
       else
-        ::Faraday
+        uri ? ::Faraday.new( uri ) : ::Faraday.new
       end
     end
 
