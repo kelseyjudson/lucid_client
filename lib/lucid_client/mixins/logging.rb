@@ -5,7 +5,7 @@ module LucidClient::Logging
   def log( msg, type = :info, key = log_key )
     c = type_colour( type )
 
-    LOGGER.send( type, "  \e[1;3#{c}m#{key}: #{msg}\e[0m" )
+    LOGGER.send( type, "  \e[3#{c}m#{key}: \e[1m#{msg}\e[0m" )
   end
 
   def log_error( msg )
