@@ -1,5 +1,9 @@
 module LucidClient::Logging
 
+  def self.included( base )
+    base.extend( self )
+  end
+
   LOGGER = LucidClient::Logger.new( STDOUT )
 
   def log( msg, type = :info, key = log_key )
