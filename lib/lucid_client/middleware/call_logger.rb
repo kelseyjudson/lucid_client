@@ -1,13 +1,5 @@
 module LucidClient::Middleware
-  class CallLogger
-
-    include LucidClient::Logging
-
-    attr_reader :app
-
-    def initialize( app )
-      @app = app
-    end
+  class CallLogger < Base
 
     def call( env )
       log_request( env )
