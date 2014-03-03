@@ -1,4 +1,4 @@
-module LucidClient::Testing
+module LucidClient::Test
   class Connection
 
     class << self

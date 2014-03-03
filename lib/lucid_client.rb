@@ -24,6 +24,4 @@ require 'lucid_client/mixins/model'
 require 'lucid_client/middleware/base'
 require 'lucid_client/middleware/call_logger'
 
-### Testing
-
-require 'lucid_client/testing/connection'
+### Testing --> require 'lucid_client/test'
