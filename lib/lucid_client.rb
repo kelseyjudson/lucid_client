@@ -3,7 +3,7 @@ require 'lucid_async'
 module LucidClient; end
 
 require 'lucid_client/mixins/env'
-require 'lucid_client/mixins/rails_check'
+require 'lucid_client/mixins/rails'
 
 LucidClient.extend( LucidClient::Env )
 

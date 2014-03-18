@@ -21,8 +21,6 @@ module LucidClient
   #
   class Resource
 
-    include LucidClient::RailsCheck
-
     attr_reader :hash
 
     def initialize( hash )
@@ -52,7 +50,7 @@ module LucidClient
     def find_or_initialize( model, mappings )
       index = mappings.select { |k, v| v == 'id' }.keys.first
 
-      if active_record?( model ) && index
+      if LucidClient::Rails.ar?( model ) && index
         model.where( index => hash['id'] ).first_or_initialize
       else
         model.new
