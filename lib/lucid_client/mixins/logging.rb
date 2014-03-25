@@ -7,9 +7,10 @@ module LucidClient::Logging
   LOGGER = LucidClient::Logger.new( STDOUT )
 
   def log( msg, type = :info, key = log_key )
-    c = type_colour( type )
+    c   = type_colour( type )
+    msg = "\e[3#{c}m<#{timestamp} #{key}> \e[1m#{msg}\e[0m"
 
-    LOGGER.send( type, "  \e[3#{c}m#{key}: \e[1m#{msg}\e[0m" )
+    LOGGER.send( type, msg )
   end
 
   def log_error( msg )
@@ -20,6 +21,10 @@ module LucidClient::Logging
 
   def log_key
     'LucidClient'
+  end
+
+  def timestamp
+    Time.now.strftime( '%Y%m%d%H%M%S' )
   end
 
   def type_colour( type )
