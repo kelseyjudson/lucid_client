@@ -24,7 +24,7 @@ module LucidClient::Logging
   end
 
   def timestamp
-    Time.now.strftime( '%Y%m%d%H%M%S' )
+    Time.now.utc.strftime( '%Y%m%d%H%M%S' )
   end
 
   def type_colour( type )
