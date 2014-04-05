@@ -26,7 +26,7 @@ module LucidClient::API
     end
   end
 
-  # Only map to resource is the given model implements +LucidClient::Model+.
+  # Only map to resource if the given model implements +LucidClient::Model+.
   # You might want to set these models as a config setting to avoid hard
   # coding it into your interfaces, eg.
   #
@@ -62,6 +62,22 @@ module LucidClient::API
     is_model?( model ) ? model.fields : options[:default]
   end
 
+  # Allows callables when overriding +#_model+. For instance, where
+  # +:shop_model+ may reference a +Proc+ retuning a class:
+  #
+  #     def _model
+  #       callable LucidClient.config[:shop_model]
+  #     end
+  #
+  def callable( model )
+    model.respond_to?( :call ) ? model.call : model
+  end
+
+  # Subclasses may override this to identify a local model used to represent
+  # a remote resource.
+  #
+  # This should return a class constant.
+  #
   def _model
   end
 
