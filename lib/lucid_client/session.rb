@@ -36,7 +36,7 @@ module LucidClient
     # representing whether or not the request was successful.
     #
     def delete( path, *a )
-      response = connection.delete( _request_path path, *a )
+      response = connection.delete _request_path( path ), *a
 
       response.status == 200
     end
